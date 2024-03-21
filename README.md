@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Front End Developer Technical Test - VocaGame
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is for the technical test from VocaGame. It implements session management using encrypted cookies for user authentication in a Next.js application. It includes features such as protecting routes, redirecting unauthenticated users to the login page, and handling session expiration.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Implementation Choices
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Session Management**: Encrypted cookies are used to store user sessions. Cookies are encrypted when being saved and decrypted when retrieved, ensuring the security of user data.
+- **Authentication Middleware**: A middleware function is implemented to authenticate users. It protects routes that require authentication, redirecting unauthenticated users to the login page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Login Page**: A login page is provided where users can authenticate. Upon successful login, the user session cookie is set.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Session Expiration Handling**: Logic is implemented to handle session expiration. Users are redirected to the login page if their session cookie expires.
 
-## Learn More
+## How to Run the Project
 
-To learn more about Next.js, take a look at the following resources:
+Follow these steps to run the project locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository to your local machine:
+   `git clone <repository-url>`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Install dependencies:
+   `npm install or yarn add`
 
-## Deploy on Vercel
+3. Start the development server:
+   `npm run dev or yarn dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Dependencies
+
+- [js-cookie](https://www.npmjs.com/package/js-cookie): For managing cookies in the browser.
+- [crypto-js](https://www.npmjs.com/package/crypto-js): For encryption and decryption of data.
+- [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit): For state management global
+- [react-hook-form](https://www.npmjs.com/package/@reduxjs/react-hook-form): for validation form input
+- [react-redux](https://www.npmjs.com/package/@reduxjs/react-redux): for linked redux and react
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
