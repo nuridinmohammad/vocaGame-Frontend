@@ -4,7 +4,7 @@ import { Register } from "@/components/organisms/Register";
 import React from "react";
 
 export default async function Page() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <>
       <Navbar />

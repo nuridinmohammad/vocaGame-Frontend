@@ -16,6 +16,7 @@ import { addRegisteredUser } from "@/lib/features/auth/registerSlice";
 import Cookies from "js-cookie";
 
 export function FormEdit() {
+  const login = Cookies.get("login");
   const users = useSelector((state: RootStater) => state.register);
   const [newPassword, setNewPassword] = useState<string>();
   const dispatch = useDispatch();
@@ -33,11 +34,12 @@ export function FormEdit() {
 
   useEffect(() => {
     const register = Cookies.get("register");
-    if (register) {
+    if (typeof window !== undefined && register) {
       const data = decrypt(register);
       setDataRegister(data);
+      dispatch(addRegisteredUser(data));
     }
-  }, []);
+  }, [dispatch, login]);
 
   const onSubmit = (data: IFormRegister) => {
     const reRegister: IFormRegister = {
@@ -77,7 +79,7 @@ export function FormEdit() {
                 name="name"
                 type="text"
                 className="w-full mt-1 bg-transparent text-[#374151] border border-gray-300 dark:border-gray-300 h-[38px] "
-                value={users[0]?.name ?? "Loading.."}
+                value={users[0]?.name}
               />
             );
           }}
@@ -100,7 +102,7 @@ export function FormEdit() {
                 name="handphone"
                 type="text"
                 className="w-full mt-1 bg-transparent text-[#374151] border border-gray-300 dark:border-gray-300 h-[38px] "
-                value={users[0]?.handphone ?? "Loading.."}
+                value={users[0]?.handphone}
               />
             );
           }}
@@ -124,7 +126,7 @@ export function FormEdit() {
                 name="confirmPassword"
                 type="password"
                 className="w-full mt-1 bg-transparent text-[#374151] border border-gray-300 dark:border-gray-300 h-[38px]"
-                value={users[0]?.password ?? "Loading.."}
+                value={users[0]?.password}
               />
               {errors.confirmPassword && (
                 <span className="text-red-500">
