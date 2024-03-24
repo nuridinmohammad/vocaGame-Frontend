@@ -23,10 +23,13 @@ Follow these steps to run the project locally:
 2. Install dependencies:
    `npm install or yarn add`
 
-3. Start the development server:
+3. Install dependencies:
+   `npm install --save-dev or yarn add -D`
+
+4. Start the development server:
    `npm run dev or yarn dev`
 
-4. Open your web browser and navigate to `http://localhost:3000` to view the application.
+5. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
 ## Dependencies
 
@@ -35,6 +38,9 @@ Follow these steps to run the project locally:
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit): For state management global
 - [react-hook-form](https://www.npmjs.com/package/@reduxjs/react-hook-form): for validation form input
 - [react-redux](https://www.npmjs.com/package/@reduxjs/react-redux): for linked redux and react
+- [zod](https://www.npmjs.com/package/zod): for validation type
+- next-themes
+- Shadcn UI
 
 ## License
 
