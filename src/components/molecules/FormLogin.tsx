@@ -40,7 +40,7 @@ export function FormLogin() {
       data.username === dataRegister?.name &&
       data.password === dataRegister.password
     ) {
-      const expirationTime = new Date(new Date().getTime() + 2 * 60 * 1000);
+      const expirationTime = new Date(new Date().getTime() + 1 * 60 * 1000);
       setEncryptedCookie("login", data, expirationTime);
       dispatch(addRegisteredUser(dataRegister));
       dispatch(addLoginUser(data));
