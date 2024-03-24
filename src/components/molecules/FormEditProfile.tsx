@@ -1,9 +1,13 @@
+"use client";
 import { LogOut, PencilIcon, UserCircle } from "lucide-react";
 import React from "react";
 import { FormEdit } from "../atoms/FormEdit";
 import { Button } from "../ui/button";
+import { removeCookie } from "@/utils/session";
+import { useRouter } from "next/navigation";
 
 export function FormEditProfile() {
+  const router = useRouter();
   return (
     <div className="w-full h-auto flex flex-col gap-4 items-start justify-start">
       <div className="md:hidden basis-1/3 w-full flex justify-between">
@@ -14,7 +18,13 @@ export function FormEditProfile() {
           </div>
         </div>
         <div className="">
-          <Button className="rounded-full flex items-start gap-4 bg-red-200 hover:bg-red-300">
+          <Button
+            className="rounded-full flex items-start gap-4 bg-red-200 hover:bg-red-300"
+            onClick={() => {
+              removeCookie("login");
+              router.replace("/login");
+            }}
+          >
             <LogOut className="-rotate-180" color="red" />
             <p className="text-red-600 font-semibold">Logout</p>
           </Button>

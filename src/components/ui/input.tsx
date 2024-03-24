@@ -11,7 +11,7 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, colorEye, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(true);
 
     const togglePasswordVisibility = () => {
@@ -37,11 +37,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           >
             {showPassword ? (
               <span className="bg-gray-200 bg-opacity-50 px-4 py-2 rounded-full">
-                <EyeOffIcon className={`h-5 w-5 ${props.colorEye}`} />
+                <EyeOffIcon className={`h-5 w-5 ${colorEye}`} />
               </span>
             ) : (
               <span className="bg-gray-200 bg-opacity-50 px-4 py-2 rounded-full">
-                <EyeIcon className={`h-5 w-5 ${props.colorEye}`} />
+                <EyeIcon className={`h-5 w-5 ${colorEye}`} />
               </span>
             )}
           </button>

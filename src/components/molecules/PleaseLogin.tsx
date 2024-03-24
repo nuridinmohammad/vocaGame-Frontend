@@ -1,9 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { SwitchTheme } from "./SwitchTheme";
 import { FormLogin } from "./FormLogin";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { decrypt } from "@/utils/session";
+import { IFormRegister } from "@/types";
 
 export function PleaseLogin() {
+  const [dataRegister, setDataRegister] = useState<IFormRegister>();
+
+  useEffect(() => {
+    const register = Cookies.get("register");
+    if (register) {
+      const data = decrypt(register);
+      setDataRegister(data);
+    }
+  }, []);
+
   return (
     <>
       <div className="w-full my-12 px-8">
@@ -18,6 +33,16 @@ export function PleaseLogin() {
             <p className="font-normal text-sm text-[#666666] sm:text-lg">
               Masukkan Username dan password anda untuk masuk
             </p>
+            <p className="dark:text-black">
+              Your Account
+              <br />
+              {dataRegister
+                ? JSON.stringify({
+                    username: dataRegister?.name,
+                    password: dataRegister?.password,
+                  })
+                : "Please register first!"}
+            </p>
           </div>
           <div className="w-full">
             <FormLogin />
@@ -26,7 +51,7 @@ export function PleaseLogin() {
             <p className="font-normal text-md leading-7 text-[#666] text-center sm:text-lg">
               Belom punya akun?{" "}
               <Link
-                href={"/register"}
+                href={"/"}
                 className="font-bold text-[#131167] dark:text-[#D38122]"
               >
                 Daftar Sekarang

@@ -12,13 +12,25 @@ const decrypt = (encryptedData: string): any => {
   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 };
 
-const setEncryptedCookie = (key: string, data: any): void => {
+const setEncryptedCookie = (
+  key: string,
+  data: any,
+  expirationTime?: any
+): void => {
   const encryptedData: string = encrypt(data);
-  Cookies.set(key, encryptedData, { expires: 1 }); // Cookie expires in 1 day
+  if (expirationTime) {
+    Cookies.set(key, encryptedData, {
+      expires: expirationTime,
+      path: "/profile",
+    });
+    return;
+  } else {
+    Cookies.set(key, encryptedData, { path: "/" });
+  }
 };
 
 const getDecryptedCookie = (key: string): any => {
-  const encryptedData: string | undefined = Cookies.get(key);
+  const encryptedData: string | undefined = Cookies.get("token");
   if (encryptedData) {
     return decrypt(encryptedData);
   }
@@ -26,7 +38,7 @@ const getDecryptedCookie = (key: string): any => {
 };
 
 const removeCookie = (key: string): void => {
-  Cookies.remove(key);
+  Cookies.remove(key, { path: "/profile" });
 };
 
-export { setEncryptedCookie, getDecryptedCookie, removeCookie };
+export { setEncryptedCookie, getDecryptedCookie, removeCookie, decrypt };

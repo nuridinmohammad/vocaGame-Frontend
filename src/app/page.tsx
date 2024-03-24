@@ -1,28 +1,23 @@
-import { Footer } from "@/components/atoms/Footer";
-import { LoremProfile } from "@/components/atoms/LoremProfile";
-import { PhotoProfile } from "@/components/atoms/PhotoProfile";
-import { EditProfile } from "@/components/molecules/EditProfile";
-import { Header } from "@/components/molecules/Header";
+import { ImageLogo } from "@/components/atoms/ImageLogo";
 import { Navbar } from "@/components/molecules/Navbar";
-import { Button } from "@/components/ui/button";
-import { PencilIcon } from "lucide-react";
+import { Register } from "@/components/organisms/Register";
+import React from "react";
 
-export default async function Home() {
+export default async function Page() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   return (
     <>
       <Navbar />
-      <Header />
-      <main className="w-full h-full flex flex-col justify-between items-center gap-8 bg-white pt-8">
-        <div className="w-full sm:px-28 lg:px-48 flex flex-col gap-4">
-          <div className="bg-[#131167] dark:bg-[#D38122] w-full h-auto py-4 rounded-md flex flex-col items-center justify-center gap-2">
-            <LoremProfile />
-          </div>
-          <div>
-            <EditProfile />
-          </div>
+      <main className="flex justify-center gap-6">
+        <div className="flex-none hidden lg:flex">
+          <ImageLogo
+            text="IMAGE/LOGO"
+            className="w-full lg:w-[370px] h-[233px]"
+          />
         </div>
-        <Footer />
+        <div className="flex-1 lg:max-w-[550px] py-20">
+          <Register />
+        </div>
       </main>
     </>
   );
